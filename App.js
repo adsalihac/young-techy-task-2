@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View , Image } from 'react-native'
 import React, {useState}  from 'react'
 
 const App = () => {
@@ -73,23 +73,25 @@ const App = () => {
       flex:1,
       backgroundColor: '#fff',
     }}>
-      <View style={{
+      {/* <View style={{
         backgroundColor: enable ? 'orange' : 'black',
         width: 200,
         height: 200,
         borderRadius: 100,
         alignSelf: 'center',
         marginTop: 100,
-      }}></View>
+      }}></View> */}
 
-      <Text style={{
-        fontSize: 30,
-        color: '#000',
-        alignSelf: 'center',
-        marginTop: 50,
-      }}>
-     { enable ? 'BULB ON' : 'BULB OFF'}
-      </Text>
+      <Image 
+        style={{
+          width: 200,
+          height: 200,
+          alignSelf: 'center',
+          marginTop: 100,
+        }}
+        resizeMode="contain"
+        source={enable ? require('./assets/OnBulb.webp'):require('./assets/OffBulb.jpg')}
+        />
 
       <TouchableOpacity 
         onPress={
@@ -110,7 +112,9 @@ const App = () => {
           color: '#fff',
           alignSelf: 'center',
           marginTop: 10,
-        }}>Click Me</Text>
+        }}>
+          { enable ? 'BULB OFF' : 'BULB ON'}
+        </Text>
       </TouchableOpacity>
 
 
