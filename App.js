@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View , Image } from 'react-native'
 import React, {useState}  from 'react'
+import Button from './app/components/button'
 
 const App = () => {
 
@@ -45,9 +46,14 @@ const App = () => {
   // }
 
 
-  const onClickMe = () => { // switch board , function declaration
+  const onBulb = () => { // switch board , function declaration
     console.log(enable, 'clicked');
-    setEnable(!enable); // update enable variable
+    setEnable(true); // update enable variable
+  }
+
+  const offBulb = () => { // switch board , function declaration
+    console.log(enable, 'clicked');
+    setEnable(false); // update enable variable
   }
 
 
@@ -93,10 +99,30 @@ const App = () => {
         source={enable ? require('./assets/OnBulb.webp'):require('./assets/OffBulb.jpg')}
         />
 
-      <TouchableOpacity 
+        <Button
+          btn_name={enable ? "BULB ON": "BULB OFF"}
+          enableButton={enable}
+          onClick={
+            ()=>{
+              setEnable(!enable)
+            }
+          }
+        />
+
+        {/* <Button
+          btn_name={"BULB OFF"}
+          enableButton={enable}
+          onClick={
+            ()=>{
+              setEnable(false)
+            }
+          }
+        /> */}
+
+      {/* <TouchableOpacity 
         onPress={
           () => {
-            onClickMe(); // function call , switch button click
+            onBulb(); // function call , switch button click
           }
         }
       style={{
@@ -113,9 +139,110 @@ const App = () => {
           alignSelf: 'center',
           marginTop: 10,
         }}>
-          { enable ? 'BULB OFF' : 'BULB ON'}
+          BULB ON
         </Text>
       </TouchableOpacity>
+
+
+      <TouchableOpacity 
+        onPress={
+          () => {
+            offBulb(); // function call , switch button click
+          }
+        }
+      style={{
+        width: 300,
+        height: 60,
+        borderRadius: 10,
+        alignSelf: 'center',
+        backgroundColor: 'red',
+        marginTop: 50,
+      }}>
+        <Text style={{
+          fontSize: 30,
+          color: '#fff',
+          alignSelf: 'center',
+          marginTop: 10,
+        }}>
+         BULB OFF
+        </Text>
+      </TouchableOpacity> */}
+
+
+      <TouchableOpacity 
+        onPress={()=>{
+          setEnable(!enable)
+        }}
+        style={{
+          width: 150,
+          height: 60,
+          borderRadius: 100/2,
+          alignSelf: 'center',
+          backgroundColor: enable ? "yellow" : 'black',
+          marginTop: 50,
+          flexDirection:'row',
+          justifyContent:'space-between',
+          alignItems:'center'
+        }}>
+
+         {
+          enable ===false &&
+          <View style={{
+            height:50,
+            width:50,
+            borderRadius:50/2,
+            backgroundColor:'white',
+            marginLeft:5,
+          }}>
+          </View>
+         }
+     
+       {
+        !enable &&
+        <View style={{
+          width:50,
+        }}>
+        <Text 
+            style={{
+              color:'white',
+            }}>
+              OFF
+            </Text>
+        </View>
+       }
+
+       
+      {
+        enable === true &&
+        <View style={{
+          width:50,
+        }}>
+        <Text 
+            style={{
+              color:'black',
+              marginLeft:5,
+            }}>
+              ON
+            </Text>
+        </View>
+      }
+
+       {
+        enable &&
+        <View style={{
+            height:50,
+            width:50,
+            borderRadius:50/2,
+            backgroundColor:'black',
+            marginRight:5,
+          }}>
+
+          </View>
+
+       }
+      
+
+        </TouchableOpacity>
 
 
      
